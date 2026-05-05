@@ -195,7 +195,7 @@ New-AppChk $gbSoft "AnyDesk" 20 100 @{Type="Url"; Url="https://download.anydesk.
 New-AppChk $gbSoft "Java 8u181" 20 125 @{Type="Url"; Url="https://base.crabinformatica.it/java.exe"; Name="java.exe"; Args="/s"; Path="${env:ProgramFiles(x86)}\Java\jre1.8.0_181\bin\java.exe"}
 New-AppChk $gbSoft "OpenVPN Connect" 20 150 @{Type="Url"; Url="https://base.crabinformatica.it/openvpn.msi"; Name="openvpn.msi"; Args="/qn /norestart"; Path="${env:ProgramFiles}\OpenVPN Connect\OpenVPNConnect.exe"}
 # Colonna 2
-New-AppChk $gbSoft "7zFM" 200 25 @{Type="Url"; Url="https://github.com/ip7z/7zip/releases/download/26.01/7z2601-x64.exe"; Name="7z2601-x64.exe"; Args="/s"; Path="${env:ProgramFiles(x86)}\7-Zip\7zFM.exe"}
+New-AppChk $gbSoft "7zFM" 200 25 @{Type="Url"; Url="https://github.com/ip7z/7zip/releases/download/26.01/7z2601-x64.exe"; Name="7z2601-x64.exe"; Args="/S"; Path="${env:ProgramFiles(x86)}\7-Zip\7zFM.exe"}
 
 
 $btnSelAll = New-Object System.Windows.Forms.Button; $btnSelAll.Text = "Tutti"; $btnSelAll.Location = New-Object System.Drawing.Point(20, 180); $btnSelAll.Size = New-Object System.Drawing.Size(60, 25)
