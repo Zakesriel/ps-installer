@@ -27,7 +27,7 @@ try {
 }
 
 # --- LETTURA CONFIG ---
-$Config = @{ Domain = "roncadelle.local"; RdpIP = "172.19.0.7" }
+$Config = @{ Domain = "cauto.loc"; RdpIP = "...." }
 $ScriptPath = $PSScriptRoot
 if ([string]::IsNullOrEmpty($ScriptPath)) { $ScriptPath = $PWD.Path }
 $IniFile = Join-Path $ScriptPath "config.ini"
@@ -187,26 +187,16 @@ function New-AppChk ($ParentGroup, $name, $x, $y, $tag) {
     $ParentGroup.Controls.Add($c)
 }
 
-# Colonna 1 (Browser e Utility Base)
+# Colonna 1 (Applicazioni)
 New-AppChk $gbSoft "Google Chrome" 20 25 @{Type="Winget"; Id="Google.Chrome"; Path="$env:ProgramFiles\Google\Chrome\Application\chrome.exe"}
-New-AppChk $gbSoft "Mozilla Firefox" 20 50 @{Type="Url"; Url="https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=it"; Name="firefox.exe"; Args="-ms"; Path="$env:ProgramFiles\Mozilla Firefox\firefox.exe"}
-New-AppChk $gbSoft "Adobe Acrobat Reader" 20 75 @{Type="Winget"; Id="Adobe.Acrobat.Reader.64-bit"; Path="$env:ProgramFiles\Adobe\Acrobat DC\Acrobat\Acrobat.exe"}
-New-AppChk $gbSoft "WinRAR" 20 100 @{Type="Winget"; Id="RARLab.WinRAR"; Path="$env:ProgramFiles\WinRAR\WinRAR.exe"}
-New-AppChk $gbSoft "LibreOffice" 20 125 @{Type="Winget"; Id="TheDocumentFoundation.LibreOffice"; Path="$env:ProgramFiles\LibreOffice\program\soffice.exe"}
-New-AppChk $gbSoft "K-Lite Codecs" 20 150 @{Type="Winget"; Id="CodecGuide.K-LiteCodecPack.Full"; Path="$env:ProgramFiles\K-Lite Codec Pack\MPC-HC64\mpc-hc64.exe"}
+New-AppChk $gbSoft "Adobe Acrobat Reader" 20 50 @{Type="Winget"; Id="Adobe.Acrobat.Reader.64-bit"; Path="$env:ProgramFiles\Adobe\Acrobat DC\Acrobat\Acrobat.exe"}
+New-AppChk $gbSoft "WinRAR" 20 75 @{Type="Winget"; Id="RARLab.WinRAR"; Path="$env:ProgramFiles\WinRAR\WinRAR.exe"}
+New-AppChk $gbSoft "AnyDesk" 20 100 @{Type="Url"; Url="https://download.anydesk.com/AnyDesk.exe"; Name="anydesk.exe"; Args="--install `"${env:ProgramFiles(x86)}\AnyDesk`" --start-with-win --silent"; Path="${env:ProgramFiles(x86)}\AnyDesk\AnyDesk.exe"}
+New-AppChk $gbSoft "Java 8u181" 20 125 @{Type="Url"; Url="https://base.crabinformatica.it/java.exe"; Name="java.exe"; Args="/s"; Path="${env:ProgramFiles(x86)}\Java\jre1.8.0_181\bin\java.exe"}
+New-AppChk $gbSoft "OpenVPN Connect" 20 150 @{Type="Url"; Url="https://base.crabinformatica.it/openvpn.msi"; Name="openvpn.msi"; Args="/qn /norestart"; Path="${env:ProgramFiles}\OpenVPN Connect\OpenVPNConnect.exe"}
+# Colonna 2
+New-AppChk $gbSoft "7zFM" 200 25 @{Type="Url"; Url="https://github.com/ip7z/7zip/releases/download/26.01/7z2601-x64.exe"; Name="7z2601-x64.exe"; Args="/s"; Path="${env:ProgramFiles(x86)}\7-Zip\7zFM.exe"}
 
-# Colonna 2 (Strumenti di Lavoro)
-New-AppChk $gbSoft "AnyDesk" 200 25 @{Type="Url"; Url="https://download.anydesk.com/AnyDesk.exe"; Name="anydesk.exe"; Args="--install `"${env:ProgramFiles(x86)}\AnyDesk`" --start-with-win --silent"; Path="${env:ProgramFiles(x86)}\AnyDesk\AnyDesk.exe"}
-New-AppChk $gbSoft "PDF24 Creator" 200 50 @{Type="Url"; Url="https://download.pdf24.org/pdf24-creator-installer.exe"; Name="pdf24.exe"; Args="/VERYSILENT /NORESTART"; Path="$env:ProgramFiles\PDF24\pdf24.exe"}
-New-AppChk $gbSoft "Java 8u181" 200 75 @{Type="Url"; Url="https://base.crabinformatica.it/java.exe"; Name="java.exe"; Args="/s"; Path="${env:ProgramFiles(x86)}\Java\jre1.8.0_181\bin\java.exe"}
-New-AppChk $gbSoft "Kerio VPN Client" 200 100 @{Type="Url"; Url="https://cdn.kerio.com/dwn/control/control-9.6.0-9189/kerio-control-vpnclient-9.6.0-9189-win64.msi"; Name="kerio.msi"; Args="/qn /norestart"; Path="${env:ProgramFiles}\Kerio\VPN Client\kvpncsvc.exe"}
-New-AppChk $gbSoft "OpenVPN Connect" 200 125 @{Type="Url"; Url="https://base.crabinformatica.it/openvpn.msi"; Name="openvpn.msi"; Args="/qn /norestart"; Path="${env:ProgramFiles}\OpenVPN Connect\OpenVPNConnect.exe"}
-New-AppChk $gbSoft "ArubaSign" 200 150 @{Type="Url"; Url="https://updatesfirma.aruba.it/downloads/ArubaSign-latest(standard).msi"; Name="arubasign.msi"; Args="ALLUSERS=1 /qn /norestart"; Path="${env:ProgramFiles}\ArubaSign\ArubaSign.exe"}
-
-# Colonna 3 (Driver Smartcard)
-New-AppChk $gbSoft "Driver Bit4ID" 380 25 @{Type="Driver"; Url="https://base.crabinformatica.it/bit4id.exe"; Name="bit4id"; Args="/S"}
-New-AppChk $gbSoft "Driver Cyberneid" 380 50 @{Type="Driver"; Url="https://base.crabinformatica.it/cyber.exe"; Name="cyber"; Args="/S"}
-New-AppChk $gbSoft "Driver SafeDive" 380 75 @{Type="Driver"; Url="https://base.crabinformatica.it/safedive.exe"; Name="safedive"; Args="/VERYSILENT /SUPPRESSMSGBOXES /NORESTART"}
 
 $btnSelAll = New-Object System.Windows.Forms.Button; $btnSelAll.Text = "Tutti"; $btnSelAll.Location = New-Object System.Drawing.Point(20, 180); $btnSelAll.Size = New-Object System.Drawing.Size(60, 25)
 $btnSelAll.Add_Click({ $gbSoft.Controls | Where-Object { $_ -is [System.Windows.Forms.CheckBox] } | ForEach-Object { $_.Checked = $true } })
@@ -220,15 +210,11 @@ $gbSoft.Controls.Add($btnDeSel)
 $gbMisc = New-Object System.Windows.Forms.GroupBox
 $gbMisc.Location = New-Object System.Drawing.Point(10, 390); $gbMisc.Size = New-Object System.Drawing.Size(560, 140); $gbMisc.Text = "3. Opzioni Varie & Desktop Remoto"
 
-$chkRdp = New-Object System.Windows.Forms.CheckBox; $chkRdp.Text = "Crea collegamento RDP Desktop"; $chkRdp.Location = New-Object System.Drawing.Point(20, 25); $chkRdp.Size = New-Object System.Drawing.Size(200, 20); $chkRdp.Checked = $true
-$lblRdpIP = New-Object System.Windows.Forms.Label; $lblRdpIP.Text = "IP Server:"; $lblRdpIP.Location = New-Object System.Drawing.Point(40, 50); $lblRdpIP.Size = New-Object System.Drawing.Size(60, 20)
-$txtRdpIP = New-Object System.Windows.Forms.TextBox; $txtRdpIP.Location = New-Object System.Drawing.Point(100, 47); $txtRdpIP.Size = New-Object System.Drawing.Size(100, 20); $txtRdpIP.Text = $Config["RdpIP"]
-
-$chkOfficeScrub = New-Object System.Windows.Forms.CheckBox; $chkOfficeScrub.Text = "Esegui Office Scrubber (GitHub)"; $chkOfficeScrub.Location = New-Object System.Drawing.Point(20, 80); $chkOfficeScrub.Size = New-Object System.Drawing.Size(250, 20); $chkOfficeScrub.Checked = $false
-
-$chkFastBoot = New-Object System.Windows.Forms.CheckBox; $chkFastBoot.Text = "Disabilita Avvio Rapido"; $chkFastBoot.Location = New-Object System.Drawing.Point(280, 25); $chkFastBoot.Size = New-Object System.Drawing.Size(200, 20); $chkFastBoot.Checked = $true
-$chkNoOneDrive = New-Object System.Windows.Forms.CheckBox; $chkNoOneDrive.Text = "Disabilita OneDrive (TUTTI UTENTI)"; $chkNoOneDrive.Location = New-Object System.Drawing.Point(280, 50); $chkNoOneDrive.Size = New-Object System.Drawing.Size(250, 20); $chkNoOneDrive.Checked = $true
-$chkPhotoViewer = New-Object System.Windows.Forms.CheckBox; $chkPhotoViewer.Text = "Ripristina Visualizzatore Foto Classico"; $chkPhotoViewer.Location = New-Object System.Drawing.Point(280, 75); $chkPhotoViewer.Size = New-Object System.Drawing.Size(250, 20); $chkPhotoViewer.Checked = $true
+$chkRdp = New-Object System.Windows.Forms.CheckBox; $chkRdp.Text = "Crea collegamento RDP Desktop"; $chkRdp.Location = New-Object System.Drawing.Point(20, 25); $chkRdp.Size = New-Object System.Drawing.Size(190, 25); $chkRdp.Checked = $false
+$lblRdpIP = New-Object System.Windows.Forms.Label; $lblRdpIP.Text = "IP Server:"; $lblRdpIP.Location = New-Object System.Drawing.Point(220, 30); $lblRdpIP.Size = New-Object System.Drawing.Size(60, 25)
+$txtRdpIP = New-Object System.Windows.Forms.TextBox; $txtRdpIP.Location = New-Object System.Drawing.Point(300, 25); $txtRdpIP.Size = New-Object System.Drawing.Size(100, 25); $txtRdpIP.Text = $Config["RdpIP"]
+$chkOfficeScrub = New-Object System.Windows.Forms.CheckBox; $chkOfficeScrub.Text = "Esegui Office Scrubber (GitHub)"; $chkOfficeScrub.Location = New-Object System.Drawing.Point(20, 50); $chkOfficeScrub.Size = New-Object System.Drawing.Size(250, 20); $chkOfficeScrub.Checked = $false
+$chkFastBoot = New-Object System.Windows.Forms.CheckBox; $chkFastBoot.Text = "Disabilita Avvio Rapido"; $chkFastBoot.Location = New-Object System.Drawing.Point(20, 75); $chkFastBoot.Size = New-Object System.Drawing.Size(200, 20); $chkFastBoot.Checked = $true
 
 $gbMisc.Controls.AddRange(@($chkRdp, $lblRdpIP, $txtRdpIP, $chkOfficeScrub, $chkFastBoot, $chkNoOneDrive, $chkPhotoViewer))
 
@@ -238,7 +224,7 @@ $btnRun.Text = "AVVIA PROCEDURA"
 $btnRun.Font = New-Object System.Drawing.Font("Arial", 12, [System.Drawing.FontStyle]::Bold)
 $btnRun.Location = New-Object System.Drawing.Point(10, 540)
 $btnRun.Size = New-Object System.Drawing.Size(560, 40)
-$btnRun.BackColor = [System.Drawing.Color]::LightGreen
+$btnRun.BackColor = [System.Drawing.Color]::DarkOrange
 
 $rtbLog = New-Object System.Windows.Forms.RichTextBox
 $rtbLog.Location = New-Object System.Drawing.Point(10, 590); $rtbLog.Size = New-Object System.Drawing.Size(560, 230); $rtbLog.ReadOnly = $true; $rtbLog.Font = New-Object System.Drawing.Font("Consolas", 9); $rtbLog.BackColor = [System.Drawing.Color]::Black; $rtbLog.ForeColor = [System.Drawing.Color]::White
