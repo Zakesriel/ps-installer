@@ -27,7 +27,7 @@ try {
 }
 
 # --- LETTURA CONFIG ---
-$Config = @{ Domain = "cauto.loc"; RdpIP = "...." }
+$Config = @{ Domain = "cauto.loc"; RdpIP = "" }
 $ScriptPath = $PSScriptRoot
 if ([string]::IsNullOrEmpty($ScriptPath)) { $ScriptPath = $PWD.Path }
 $IniFile = Join-Path $ScriptPath "config.ini"
@@ -383,8 +383,8 @@ $btnRun.Add_Click({
         if ($chkRdp.Checked) {
             Log-Gui "Creazione RDP in corso..." "Yellow"
             try {
-                $tip = if ([string]::IsNullOrWhiteSpace($txtRdpIP.Text)) { "172.19.0.7" } else { $txtRdpIP.Text }
-                $rdpPath = "$env:PUBLIC\Desktop\ServerTs.rdp"
+                $tip = if ([string]::IsNullOrWhiteSpace($txtRdpIP.Text)) { "" } else { $txtRdpIP.Text }
+                $rdpPath = "$env:PUBLIC\Desktop\Connessione Remota.rdp"
                 $rdpContent = "full address:s:$tip`r`nredirectprinters:i:0`r`nredirectclipboard:i:1`r`nauthentication level:i:2"
                 [System.IO.File]::WriteAllText($rdpPath, $rdpContent, [System.Text.Encoding]::UTF8)
                 Log-Gui "RDP Creato in Desktop Pubblico ($tip)." "Green"
